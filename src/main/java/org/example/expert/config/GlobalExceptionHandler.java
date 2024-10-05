@@ -3,6 +3,8 @@ package org.example.expert.config;
 import org.example.expert.domain.auth.exception.AuthException;
 import org.example.expert.domain.common.exception.InvalidRequestException;
 import org.example.expert.domain.common.exception.ServerException;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +21,7 @@ public class GlobalExceptionHandler {
         HttpStatus status = HttpStatus.NOT_FOUND;
         return getErrorResponse(status, ex.getMessage());
     }
+
 
     @ExceptionHandler(AuthException.class)
     public ResponseEntity<Map<String, Object>> handleAuthException(AuthException ex) {
